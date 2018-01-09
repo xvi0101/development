@@ -1,0 +1,23 @@
+easyblock = 'PythonPackage'
+
+name = 'Theano'
+version = '1.0.1'
+versionsuffix = "-Python-2.7.12"
+
+homepage = 'http://deeplearning.net/software/theano'
+description = """Theano is a Python library that allows you to define, optimize,
+and evaluate mathematical expressions involving multi-dimensional arrays efficiently."""
+
+toolchain = {'name': 'foss', 'version': '2017a'}
+
+source_urls = [PYPI_SOURCE]
+sources = [SOURCE_TAR_GZ]
+
+dependencies = [('Python', '2.7.12')]
+
+sanity_check_paths = {
+    'files': ['bin/theano-cache', 'bin/theano-nose'],
+    'dirs': ['lib/python%(pyshortver)s/site-packages'],
+}
+
+moduleclass = 'math'

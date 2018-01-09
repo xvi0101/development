@@ -1,0 +1,44 @@
+easyblock = 'CMakeMake'
+
+name = 'Elmerfem'
+version = '8.3'
+#versionsuffix = '-Python-%(pyver)s'
+
+homepage = 'https://github.com/ElmerCSC/elmerfem'
+description = """Elmer is a finite element software for numerical solution of partial
+differential equations."""
+
+toolchain = {'name': 'foss', 'version': '2017a'}
+toolchainopts = {'pic': True}
+
+#source_urls = ['https://github.com/ElmerCSC/elmerfem/releases/download/v%(version)s/']
+sources = [elmerfem.zip]
+checksums = []
+
+builddependencies = [
+    ('CMake', '3.7.1'),
+]
+
+dependencies = [
+    ('QT', '5.8.0'),
+#   ('VTK', '6.3.0', '-Python-%%(pyver)s'),
+    ]
+
+#configopts = '-DCMAKE_BUILD_TYPE=Release -DITK_WRAP_PYTHON=ON '
+#configopts += '-DBUILD_TESTING=OFF -DITK_USE_SYSTEM_SWIG=ON '
+#configopts += '-DModule_ITKReview=ON -DModule_ITKVtkGlue=ON '
+
+#preinstallopts = "export PYTHONPATH=%(installdir)s/lib/python%(pyshortver)s/site-packages:$PYTHONPATH && "
+
+separate_build_dir = True
+
+#modextrapaths = {'PYTHONPATH': ['lib/python%(pyshortver)s/site-packages']}
+
+sanity_check_paths = {
+    'files': [],
+    'dirs': [],
+}
+
+#sanity_check_commands = [('python', "-c 'import %(namelower)s'")]
+
+moduleclass = 'math'

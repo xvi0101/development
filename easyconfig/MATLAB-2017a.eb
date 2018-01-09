@@ -1,0 +1,21 @@
+name = 'MATLAB'
+version = '2017a'
+
+homepage = 'http://www.mathworks.com/products/matlab'
+description = """MATLAB is a high-level language and interactive environment
+ that enables you to perform computationally intensive tasks faster than with
+ traditional programming languages such as C, C++, and Fortran."""
+
+toolchain = {'name': 'dummy', 'version': ''}
+
+# be sure to copy both DVD content to the SAME directory, 
+# including the hidden files, especially .dvd1 and .dvd2 
+sources = [SOURCELOWER_TAR_GZ]
+
+dependencies = [('Java', '1.8.0_121')]
+
+moduleclass = 'math'
+
+license_server = 'kms.s.upf.edu'
+license_server_port = '27000'
+key = '22168-02066-10237-11144-23664-18744-10227-33893-12894-10523-41678-23320'

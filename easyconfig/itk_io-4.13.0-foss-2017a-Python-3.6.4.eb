@@ -1,0 +1,38 @@
+easyblock = 'PythonPackage'
+
+options = {'modulename': 'itk'}
+
+name = 'itk_io'
+version = '4.13.0'
+versionsuffix = '-Python-%(pyver)s'
+
+homepage = 'https://itk.org'
+description = "open-source software system to support the Visible Human Project. Currently under active development, ITK employs leading-edge segmentation and registration algorithms in two, three, and more dimensions."
+
+toolchain = {'name': 'foss', 'version': '2017a'}
+
+pymaj = '3'
+pymin = '6'
+pymajmin = pymaj + pymin
+
+source_urls = ['https://pypi.python.org/packages/4d/77/e710d12ddf9f7436ce3b757ff0f80cb48083f679e968257b1c99344c6829/']
+sources = [
+    'itk_io-%%(version)s-cp%(pymajmin)s-cp%(pymajmin)sm-manylinux1_x86_64.whl' % {'pymajmin': pymajmin},
+]
+checksums = ['ae569328ce51f522d2d6722e8762601f']
+
+dependencies = [
+    ('Python', '%s.%s.4' % (pymaj, pymin)),
+    ('itk_core', '4.13.0', versionsuffix),
+]
+
+use_pip = True
+unpack_sources = False
+sanity_check_paths = {
+    'files': [],
+    'dirs': ['lib/python%(pyshortver)s/site-packages'],
+}
+
+sanity_check_commands = [('python', '-c "import itk"')]
+
+moduleclass = 'lib'

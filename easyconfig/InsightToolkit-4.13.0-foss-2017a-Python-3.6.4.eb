@@ -1,0 +1,25 @@
+easyblock = 'CMakePythonPackage'
+
+name = 'InsightToolkit'
+version = '4.13.0'
+versionsuffix = '-Python-%(pyver)s'
+
+homepage = 'https://itk.org'
+description = "open-source software system to support the Visible Human Project. Currently under active development, ITK employs leading-edge segmentation and registration algorithms in two, three, and more dimensions."
+
+toolchain = {'name': 'foss', 'version': '2017a'}
+
+pymaj = '3'
+pymin = '6'
+pymajmin = pymaj + pymin
+
+source_urls = [SOURCE_TAR_GZ]
+
+dependencies = [
+    ('Python', '%s.%s.4' % (pymaj, pymin)),
+]
+
+modextrapaths = {'PYTHONPATH': 'lib/python%(pyshortver)s/site-packages'}
+
+moduleclass = 'lib'
+

@@ -1,0 +1,29 @@
+##
+# This file is an EasyBuild recipe
+#
+# Author:    Javier Ortega Martin
+##
+easyblock = 'Tarball'
+
+name = 'elastix'
+version = "4.8"
+
+homepage = 'http://elastix.isi.uu.nl'
+description = "a toolbox for rigid and nonrigid registration of images."
+
+toolchain = {'name': 'dummy', 'version': ''}
+
+source_urls = ['http://elastix.isi.uu.nl/download/']
+sources = ['elastix_linux64_v%(version)s.tar.bz2']
+
+#cuDNN/6.0-CUDA-8.0.61
+dependencies = [
+    ('cuDNN', '6.0-CUDA-8.0.61'),
+]
+
+sanity_check_paths = {
+    'files': ['bin/elastix', 'bin/transformix', 'lib/libANNlib.so'],
+    'dirs': ['bin', 'lib'],
+}
+
+moduleclass = 'devel'

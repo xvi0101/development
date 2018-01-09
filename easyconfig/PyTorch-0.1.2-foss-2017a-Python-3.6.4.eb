@@ -1,0 +1,35 @@
+easyblock = 'PythonPackage'
+
+name = 'PyTorch'
+version = "0.1.2"
+versionsuffix = "-Python-3.6.4"
+
+homepage = 'http://pytorch.org/'
+description = "PyTorch is a deep learning framework that puts Python first."
+
+toolchain = {'name': 'foss', 'version': '2017a'}
+
+pymaj = '3'
+pymin = '6'
+pymajmin = pymaj + pymin
+
+source_urls = [PYPI_SOURCE]
+sources = [SOURCELOWER_TAR_GZ]
+checksums = []
+dependencies = [
+    ('Python', '%s.%s.4' % (pymaj, pymin)),
+    ('CUDA', '8.0.61'),
+#    ('CuDNN', '6.0', '-CUDA-8.0.61'),
+]
+
+exts_defaultclass = 'PythonPackage'
+
+use_pip = True
+
+sanity_check_paths = {
+    'files': [],
+    'dirs': ['lib/python%(pyshortver)s/site-packages'],
+}
+
+
+moduleclass = 'lib'

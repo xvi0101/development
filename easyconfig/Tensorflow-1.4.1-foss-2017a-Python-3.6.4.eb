@@ -1,0 +1,35 @@
+easyblock = 'PythonPackage'
+
+name = 'Tensorflow'
+version = '1.4.1'
+versionsuffix = '-Python-%(pyver)s'
+
+homepage = 'https://www.tensorflow.org/'
+description = "An open-source software library for Machine Intelligence"
+
+toolchain = {'name': 'foss', 'version': '2017a'}
+
+pymaj = '3'
+pymin = '6'
+pymajmin = pymaj + pymin
+
+source_urls = ['https://pypi.python.org/packages/8c/b3/dba1a3e681a56d5ad63d3a1aa02b52294bdb3c6373245a67c1492a90cb62/']
+sources = [
+    'tensorflow-%%(version)s-cp%(pymajmin)s-cp%(pymajmin)sm-manylinux1_x86_64.whl' % {'pymajmin': pymajmin},
+]
+checksums = ['d502c7b0311c7edb6503f6d03625d04b']
+
+dependencies = [
+    ('Python', '%s.%s.4' % (pymaj, pymin)),
+    ('protobuf-python', '3.3.0', versionsuffix),
+]
+
+use_pip = True
+unpack_sources = False
+
+sanity_check_paths = {
+    'files': ['bin/tensorboard'],
+    'dirs': ['lib/python%(pyshortver)s/site-packages'],
+}
+
+moduleclass = 'lib'

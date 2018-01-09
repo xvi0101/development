@@ -1,0 +1,31 @@
+easyblock = 'PythonPackage'
+
+name = 'Keras'
+version = '2.1.2'
+versionsuffix = "-Python-2.7.12-Tensorflow-1.3.0"
+
+homepage = 'https://keras.io/'
+description = """Keras is a minimalist, highly modular neural networks library, written in Python and
+capable of running on top of either TensorFlow or Theano."""
+
+toolchain = {'name': 'foss', 'version': '2017a'}
+
+source_urls = [PYPI_SOURCE]
+sources = [SOURCE_TAR_GZ]
+
+dependencies = [
+    ('Python', '2.7.12'),
+    ('Tensorflow', '1.3.0', '-Python-%%(pyver)s'),
+    ('h5py', '2.7.0', '-Python-%%(pyver)s'),
+    ('PyYAML', '3.12', '-Python-%%(pyver)s'),
+]
+
+# it defaults to Tensorflow
+modextravars = {'KERAS_BACKEND': 'tensorflow'}
+
+sanity_check_paths = {
+    'files': [],
+    'dirs': ['lib/python%(pyshortver)s/site-packages'],
+}
+
+moduleclass = 'math'

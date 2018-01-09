@@ -1,0 +1,61 @@
+easyblock = 'CMakeMake'
+
+name = '3D-Caffe'
+version = 'master'
+
+cudaversion = '8.0.61'
+versionsuffix = '-CUDA-%s-Python-%%(pyver)s' % cudaversion
+
+homepage = 'https://github.com/yulequan/3D-Caffe'
+description = """
+3D Caffe library for 3D classification or segmentation problem.
+"""
+
+toolchain = {'name': 'foss', 'version': '2017a'}
+toolchainopts = {'optarch': True, 'pic': True}
+
+#only for offical Caffe version
+#sources = ['%(version)s.tar.gz']
+#source_urls = ['https://github.com/yulequan/3D-Caffe/archive/']
+
+#tar.gz with git checkout included (Remember to use git checkout 3D-Caffe. Otherwise, you only compile the offical Caffe version.)
+sources = [SOURCELOWER_TAR_GZ]
+
+builddependencies = [
+    ('CMake', '3.7.2'),
+]
+
+protobuf_ver = '3.3.0'
+
+dependencies = [
+#    ('glog', '0.3.4'),
+#    ('gflags', '2.1.2'),
+#    ('OpenCV', '3.1.0'),
+    ('CUDA', cudaversion, '', True),
+    ('cuDNN', '6.0', '', True),
+#    ('LMDB', '0.9.18'),
+#    ('LevelDB', '1.18'),
+#    ('snappy', '1.1.3'),
+    ('protobuf', protobuf_ver),
+    ('protobuf-python', protobuf_ver, '-Python-%(pyver)s'),
+    ('HDF5', '1.8.16', '-serial'),
+#    ('Boost', '1.61.0', '-Python-%(pyver)s'),
+    ('Python', '3.6.4'),
+#    ('scikit-image', '0.12.3', '-Python-%(pyver)s')
+]
+
+configopts = '-DBLAS=open'
+
+modextrapaths = {'PYTHONPATH': ['python']}
+
+sanity_check_paths = {
+    'files': ['bin/caffe'] +
+             ['lib/%s' % x for x in ['libcaffe.so', 'libproto.a']] +
+             ['python/caffe/_caffe.so'] +
+             ['include/caffe/proto/caffe.pb.h'],
+    'dirs': [],
+}
+
+sanity_check_commands = [('python', "-c 'import caffe'")]
+
+moduleclass = 'devel'

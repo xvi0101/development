@@ -1,0 +1,43 @@
+easyblock = 'PythonPackage'
+
+name = 'Shove'
+version = "0.6.6"
+versionsuffix = "-Python-3.6.4"
+
+homepage = 'https://pypi.python.org/pypi/shove/'
+description = "Generic dictionaryish object storage frontend"
+
+toolchain = {'name': 'foss', 'version': '2017a'}
+
+pymaj = '3'
+pymin = '6'
+pymajmin = pymaj + pymin
+
+source_urls = [PYPI_SOURCE]
+sources = [SOURCELOWER_TAR_BZ2]
+checksums = []
+dependencies = [
+    ('Python', '%s.%s.4' % (pymaj, pymin)),
+]
+
+exts_defaultclass = 'PythonPackage'
+
+exts_list = [
+    ('stuf', '0.9.16', {
+        'source_urls': ['https://pypi.python.org/packages/source/s/stuf/'],
+    }),
+    ('futures', '3.2.0', {
+        'source_urls': ['https://pypi.python.org/packages/source/f/futures/'],
+	'modulename': 'concurrent.futures',
+    }),
+]
+
+use_pip = True
+
+sanity_check_paths = {
+    'files': [],
+    'dirs': ['lib/python%(pyshortver)s/site-packages'],
+}
+
+
+moduleclass = 'lib'

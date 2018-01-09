@@ -17,9 +17,9 @@ source_urls = [PYPI_SOURCE]
 sources = [SOURCELOWER_TAR_GZ]
 checksums = []
 dependencies = [
-    ('Python', '%s.%s.4' % (pymaj, pymin)),
-    ('CUDA', '8.0.61'),
-#    ('CuDNN', '6.0', '-CUDA-8.0.61'),
+    ('Python', '3.6.4'),
+    ('CUDA', '8.0.61', ('dummy', 'dummy')),
+    ('CuDNN', '6.0','-CUDA-8.0.61', ('dummy', 'dummy')),
 ]
 
 exts_defaultclass = 'PythonPackage'

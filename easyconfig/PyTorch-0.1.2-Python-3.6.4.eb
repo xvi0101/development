@@ -1,25 +1,22 @@
 easyblock = 'PythonPackage'
 
 name = 'PyTorch'
-version = "0.3.0"
+version = "0.1.2"
 versionsuffix = "-Python-3.6.4"
 
 homepage = 'http://pytorch.org/'
 description = "PyTorch is a deep learning framework that puts Python first."
 
-toolchain = {'name': 'foss', 'version': '2017a'}
+toolchain = {'name': 'dummy', 'version': 'dummy'}
 
-pymaj = '3'
-pymin = '6'
-pymajmin = pymaj + pymin
 
-source_urls = [PYPI_SOURCE]
+#source_urls = ['https://pypi.python.org/packages/source/p/pytorch/'], 
 sources = [SOURCELOWER_TAR_GZ]
 checksums = []
 dependencies = [
-    ('Python', '3.6.4'),
-#    ('CUDA', '8.0.61', ('dummy', 'dummy')),
-#    ('CuDNN', '6.0', '-CUDA-8.0.61', ('dummy', 'dummy')),
+    ('Python', '3.6.4', ('foss', '2017a')),
+    ('CUDA', '8.0.61'),
+    ('CuDNN', '6.0','-CUDA-8.0.61'),
 ]
 
 exts_defaultclass = 'PythonPackage'

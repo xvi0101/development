@@ -13,11 +13,11 @@ pymaj = '3'
 pymin = '6'
 pymajmin = pymaj + pymin
 
-source_urls = [PYPI_SOURCE]
-sources = [SOURCELOWER_TAR_GZ]
+source_urls = ['']
+sources = ['']
 checksums = []
 dependencies = [
-    ('Python', '3.6.4', ('dummy', 'dummy')),
+    ('Python', '%s.%s.4' % (pymaj, pymin)),
     ('CUDA', '8.0.61'),
     ('CuDNN', '6.0', '-CUDA-8.0.61'),
 ]

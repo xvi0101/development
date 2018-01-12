@@ -1,0 +1,40 @@
+easyblock = 'PythonPackage'
+#easyblock = 'CMakeMake'
+
+name = 'torchvision'
+version = "0.1.2"
+versionsuffix = "-Python-%(pyver)s"
+
+homepage = 'https://pypi.python.org/pypi/pytorch/'
+description = "PyTorch is a deep learning framework that puts Python first."
+
+toolchain = {'name': 'foss', 'version': '2017a'}
+
+pymaj = '2'
+pymin = '7'
+pymajmin = pymaj + pymin
+
+#source_urls = ['http://download.pytorch.org/']
+#sources = ['torch-%(version)s.post4-cp27-cp27mu-linux_x86_64.whl']
+#source_urls = [PYPI_SOURCE]
+sources = ['pytorch-0.1.2.tar.gz']
+checksums = []
+dependencies = [
+    ('Python', '%s.%s.12' % (pymaj, pymin)),
+#   ('CUDA', '8.0.61', ('dummy', 'dummy')),
+#   ('cuDNN', '6.0', '-CUDA-8.0.61', ('dummy', 'dummy')),
+]
+
+exts_defaultclass = 'PythonPackage'
+
+use_pip = True
+
+sanity_check_paths = {
+    'files': [],
+    'dirs': ['lib/python%(pyshortver)s/site-packages'],
+}
+#sanity_check_commands = [('ctest', '-j4')]
+
+
+moduleclass = 'lib'
+#moduleclass = 'math'

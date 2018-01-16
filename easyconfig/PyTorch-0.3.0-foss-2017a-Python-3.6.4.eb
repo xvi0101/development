@@ -1,8 +1,8 @@
 easyblock = 'PythonPackage'
 
 name = 'PyTorch'
-version = "0.3.0"
-versionsuffix = "-Python-3.6.4"
+version = '0.3.0'
+versionsuffix = '-Python-%(pyver)s'
 
 homepage = 'http://pytorch.org/'
 description = "PyTorch is a deep learning framework that puts Python first."
@@ -18,13 +18,15 @@ sources = [SOURCELOWER_TAR_GZ]
 checksums = []
 dependencies = [
     ('Python', '3.6.4'),
-#    ('CUDA', '8.0.61', ('dummy', 'dummy')),
-#    ('CuDNN', '6.0', '-CUDA-8.0.61', ('dummy', 'dummy')),
+    ('PyYAML', '3.12', versionsuffix),
+    ('CUDA', '8.0.61', '', True),
+    ('CuDNN', '6.0', '-CUDA-8.0.61', True),
 ]
 
-exts_defaultclass = 'PythonPackage'
+#exts_defaultclass = 'PythonPackage'
 
 use_pip = True
+options = {'modulename': 'torchvision'}
 
 sanity_check_paths = {
     'files': [],

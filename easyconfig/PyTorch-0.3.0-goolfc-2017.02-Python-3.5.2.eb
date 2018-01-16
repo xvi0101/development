@@ -8,7 +8,7 @@ homepage = 'http://pytorch.org/'
 description = """Tensors and Dynamic neural networks in Python with strong GPU acceleration.
 PyTorch is a deep learning framework that puts Python first."""
 
-toolchain = {'name': 'foss', 'version': '2017a'}
+toolchain = {'name': 'goolfc', 'version': '2017.02'}
 
 # This environment is needed to prevent setup.py from invoking git to determine version.
 prebuildopts = 'PYTORCH_BUILD_VERSION=%(version)s PYTORCH_BUILD_NUMBER=1'
@@ -52,12 +52,12 @@ sources = [
 ]
 
 checksums = [
-#    'f9f405f4e6a023af20ee3f005ca5213f6c71d3fd4ee0c58407f53f15fa55c85e',  # pytorch-0.3.0.tar.gz
-#    'e19072df8b5f88cb81c6263e90b539c4b5ea93eeb9c68055603137eb7793dba7',  # gloo-05ad98a.tar.gz
-#    '175a22300b3450e27e5f2e6f95cc9abca74617cbc21a1e0ed19bdfbd22ea0305',  # googletest-ec44c6c.tar.gz
-#    '7d18b9bdc10de382da1643c2b1b0227131db47eef89998050b5e0a829d3bd0af',  # nanopb-14efb1a.tar.gz
-#    '3a53dac15e87056a9724b9b6403343b47bb71fec26c090979562f71d7ec9ee98',  # pybind11-9f6a636.tar.gz
-#    '828e0d6238e2129a9e08071750dc16ba10e38eacf96f21b8a71e501c2085b282',  # clang-cindex-python3-6a00cbc.tar.gz
+    'f9f405f4e6a023af20ee3f005ca5213f6c71d3fd4ee0c58407f53f15fa55c85e',  # pytorch-0.3.0.tar.gz
+    'e19072df8b5f88cb81c6263e90b539c4b5ea93eeb9c68055603137eb7793dba7',  # gloo-05ad98a.tar.gz
+    '175a22300b3450e27e5f2e6f95cc9abca74617cbc21a1e0ed19bdfbd22ea0305',  # googletest-ec44c6c.tar.gz
+    '7d18b9bdc10de382da1643c2b1b0227131db47eef89998050b5e0a829d3bd0af',  # nanopb-14efb1a.tar.gz
+    '3a53dac15e87056a9724b9b6403343b47bb71fec26c090979562f71d7ec9ee98',  # pybind11-9f6a636.tar.gz
+    '828e0d6238e2129a9e08071750dc16ba10e38eacf96f21b8a71e501c2085b282',  # clang-cindex-python3-6a00cbc.tar.gz
 ]
 
 options = {'modulename': 'torch'}
@@ -67,7 +67,7 @@ builddependencies = [
 ]
 
 dependencies = [
-    ('Python', '2.7.12'),
+    ('Python', '3.5.2'),
     ('PyYAML', '3.12', versionsuffix),
 ]
 

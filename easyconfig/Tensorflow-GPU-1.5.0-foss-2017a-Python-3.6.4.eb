@@ -1,0 +1,48 @@
+easyblock = 'PythonPackage'
+
+name = 'Tensorflow-gpu'
+version = '1.5.0'
+versionsuffix = '-Python-%(pyver)s'
+
+homepage = 'https://www.tensorflow.org/'
+description = "An open-source software library for Machine Intelligence"
+
+toolchain = {'name': 'foss', 'version': '2017a'}
+
+pymaj = '3'
+pymin = '6'
+pymajmin = pymaj + pymin
+
+source_urls = ['https://pypi.python.org/packages/d5/8b/094add4d2d667ddfef867285e2c16ac4fee6a1d51cece87d6d490b6e5571/']
+sources = [
+    'tensorflow_gpu-%%(version)s-cp%(pymajmin)s-cp%(pymajmin)sm-manylinux1_x86_64.whl' % {'pymajmin': pymajmin},
+]
+checksums = ['470ea7ec62a189424ed742f7743e761a']
+
+dependencies = [
+    ('cuDNN', '7.0.5', '-CUDA-9.0.176', True),
+    ('numpy', '1.14.0', versionsuffix),
+    ('Python', '%s.%s.4' % (pymaj, pymin)),
+    ('protobuf-python', '3.3.0', versionsuffix),
+]
+
+options = {'modulename': 'tensorflow'}
+
+exts_defaultclass = 'PythonPackage'
+
+exts_list = [
+    ('absl-py', '0.1.10', {
+        'source_urls': ['https://pypi.python.org/packages/5f/b8/3dafc45f20a817ab9f042302646bcbe6f7e26e8a760871a85637e53a35ec/'],
+	'modulename': 'absl',
+    }),
+]
+
+use_pip = True
+unpack_sources = False
+
+sanity_check_paths = {
+    'files': ['bin/tensorboard'],
+    'dirs': ['lib/python%(pyshortver)s/site-packages'],
+}
+
+moduleclass = 'lib'

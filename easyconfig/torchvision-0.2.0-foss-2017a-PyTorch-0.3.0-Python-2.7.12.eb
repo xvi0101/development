@@ -1,0 +1,47 @@
+###############################################################################################################
+#
+# Author: Cristina Ocaña Amorós
+#
+###############################################################################################################
+
+easyblock = 'PythonPackage'
+
+name = 'torchvision'
+version = '0.2.0'
+versionsuffix = '-Python-%(pyver)s'
+
+homepage = 'https://pypi.python.org/pypi/torchvision'
+#homepage = 'https://github.com/pytorch/vision/'
+description = "The torchvision package consists of popular datasets, model architectures, and common image transformations for computer vision."
+
+toolchain = {'name': 'foss', 'version': '2017a'}
+
+pymaj = '2'
+pymin = '7'
+pymajmin = pymaj + pymin
+
+source_urls = [PYPI_SOURCE]
+sources = ['torchvision-0.2.0-py2.py3-none-any.whl']
+#source_urls = ['https://github.com/pytorch/vision/archives/']
+#sources = ['master.zip']
+
+checksums = []
+dependencies = [
+    ('Python', '2.7.12'),
+    ('PyTorch', '0.3.0', versionsuffix),
+    ('Pillow', '3.2.0', '-Python-3.6.4-freetype-2.7.1'),
+]
+unpack_sources = False
+use_pip = True
+
+modextravars = {'TORCHVISION_BACKEND': 'PIL'}
+
+#options = {'modulename': 'torchvision'}
+sanity_check_commands = [('python')]
+
+#sanity_check_paths = {
+#    'files': [],
+#    'dirs': ['datasets', 'models', 'transforms'],
+#}
+
+moduleclass = 'lib'

@@ -1,0 +1,90 @@
+easyblock = 'MakeCp'
+
+name = 'Caffe'
+version = 'master'
+
+cudaversion = '9.0.176'
+versionsuffix = '-CUDA-%s-Python-%%(pyver)s' % cudaversion
+
+homepage = 'https://github.com/BVLC/caffe'
+description = """
+Caffe is a deep learning framework made with expression, speed, 
+and modularity in mind. It is developed by the Berkeley Vision 
+and Learning Center (BVLC) and community contributors.
+"""
+
+toolchain = {'name': 'foss', 'version': '2017a'}
+toolchainopts = {'optarch': True, 'pic': True}
+
+sources = ['%(version)s.tar.gz']
+source_urls = ['https://github.com/BVLC/caffe/archive/']
+
+builddependencies = [
+    ('CMake', '3.7.2'),
+    ('Python', '3.6.4'),
+]
+
+protobuf_ver = '3.3.0'
+
+dependencies = [
+    ('Python', '3.6.4'),
+    ('glog', '0.3.3'),
+    ('gflags', '2.1.2'),
+    ('OpenCV', '3.1.0'),
+    ('CUDA', cudaversion, '', True),
+    ('cuDNN', '7.0.5', '-CUDA-' + cudaversion, True),
+    ('LMDB', '0.9.18'),
+    ('LevelDB', '1.18'),
+    ('snappy', '1.1.3'),
+    ('protobuf', protobuf_ver),
+    ('protobuf-python', protobuf_ver, '-Python-%(pyver)s'),
+    ('HDF5', '1.8.16', '-serial'),
+    ('Boost', '1.61.0', '-Python-%(pyver)s'),
+    ('numpy', '1.14.0', '-Python-%(pyver)s'),
+    ('pkg-config', '0.29.2'),
+#    ('scikit-image', '0.12.3', '-Python-%(pyver)s')
+]
+
+# building the Makefile
+prebuildopts = 'echo "CPU_ONLY := 1" > Makefile.config && '
+prebuildopts += 'echo "USE_OPENCV := 1" >> Makefile.config && '
+prebuildopts += 'echo "USE_LEVELDB := 1" >> Makefile.config && '
+prebuildopts += 'echo "USE_LMDB := 1" >> Makefile.config && '
+prebuildopts += 'echo "OPENCV_VERSION := 3" >> Makefile.config && '
+prebuildopts += 'echo "CUDA_DIR=$CUDA_HOME" >> Makefile.config && ' 
+prebuildopts += 'echo "BLAS := open" >> Makefile.config && '
+prebuildopts += 'echo "CUDA_ARCH := -gencode arch=compute_30,code=sm_30 -gencode arch=compute_35,code=sm_35 -gencode arch=compute_50,code=sm_50 -gencode arch=compute_52,code=sm_52 -gencode arch=compute_60,code=sm_60 -gencode arch=compute_61,code=sm_61 -gencode arch=compute_61,code=compute_61" >> Makefile.config && '
+prebuildopts += 'echo "PYTHON_INCLUDE := $EBROOTPYTHON/include/python3.6m $EBROOTNUMPY/lib/python3.6/site-packages/numpy/core/include" >> Makefile.config && '
+prebuildopts += 'echo "PYTHON_LIBRARIES := boost_python3 python3.6m" >> Makefile.config && '
+prebuildopts += 'echo "PYTHON_LIB := $EBROOTPYTHON/lib" >> Makefile.config && '
+prebuildopts += 'echo "WITH_PYTHON_LAYER := 1" >> Makefile.config && '
+prebuildopts += 'echo "INCLUDE_DIRS := $PYTHON_INCLUDE $EBROOTPYTHON/include" >> Makefile.config && '
+prebuildopts += 'echo "LIBRARY_DIRS := $PYTHON_LIB $EBROOTPYTHON/lib" >> Makefile.config && '
+prebuildopts += 'echo "USE_PKG_CONFIG := 1" >> Makefile.config && '
+prebuildopts += 'echo "BUILD_DIR := build" >> Makefile.config && '
+prebuildopts += 'echo "DISTRIBUTE_DIR := distribute" >> Makefile.config && '
+prebuildopts += 'echo "TEST_GPUID := 0" >> Makefile.config && '
+prebuildopts += 'echo "Q ?= @" >> Makefile.config && '
+
+# build program and library
+buildopts = 'all'
+
+files_to_copy = ["build/tools", "build/test", "build/python", "build/lib", "build/examples", "test/cuda"]
+
+sanity_check_paths = {
+    'dirs': files_to_copy,
+}
+
+modextrapaths = {'PYTHONPATH': ['python']}
+
+#sanity_check_paths = {
+#    'files': ['bin/caffe'] +
+#             ['lib/%s' % x for x in ['libcaffe.so', 'libproto.a']] +
+#             ['python/caffe/_caffe.so'] +
+#             ['include/caffe/proto/caffe.pb.h'],
+#    'dirs': [],
+#}
+
+sanity_check_commands = [('python', "-c 'import pycaffe'")]
+
+moduleclass = 'devel'

@@ -1,0 +1,49 @@
+easyblock = 'PythonPackage'
+
+name = 'Tensorflow'
+version = '1.5.0'
+versionsuffix = '-Python-%(pyver)s'
+
+homepage = 'https://www.tensorflow.org/'
+description = "An open-source software library for Machine Intelligence"
+
+toolchain = {'name': 'foss', 'version': '2017a'}
+
+pymaj = '2'
+pymin = '7'
+pymajmin = pymaj + pymin
+
+
+source_urls = ['https://pypi.python.org/packages/69/6d/09d4fbeedbafbc6768a94901f14ace4153adba4c2e2c6e6f2080f4a5d1a7/']
+sources = [
+    'tensorflow-%%(version)s-cp%(pymajmin)s-cp%(pymajmin)smu-manylinux1_x86_64.whl' % {'pymajmin': pymajmin},
+]
+checksums = ['5dbab58e0bf0ca4bbc7b5e810468cf83']
+
+# numpy load python version as dependency
+dependencies = [
+    ('Python', '%s.%s.12' % (pymaj, pymin)),
+    ('protobuf-python', '3.3.0', versionsuffix),
+    ('numpy', '1.14.0', versionsuffix),
+]
+
+options = {'modulename': 'tensorflow'}
+
+exts_defaultclass = 'PythonPackage'
+
+exts_list = [
+    ('absl-py', '0.1.10', {
+        'source_urls': ['https://pypi.python.org/packages/5f/b8/3dafc45f20a817ab9f042302646bcbe6f7e26e8a760871a85637e53a35ec/'],
+	'modulename': 'absl',
+    }),
+]
+
+use_pip = True
+unpack_sources = False
+
+sanity_check_paths = {
+    'files': ['bin/tensorboard'],
+    'dirs': ['lib/python%(pyshortver)s/site-packages'],
+}
+
+moduleclass = 'lib'

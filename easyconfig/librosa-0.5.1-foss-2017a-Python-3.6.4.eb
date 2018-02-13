@@ -1,0 +1,38 @@
+easyblock = 'PythonPackage'
+
+name = 'librosa'
+version = '0.5.1'
+versionsuffix = '-Python-%(pyver)s'
+
+homepage = 'https://pypi.python.org/pypi/librosa'
+description = "Python module for audio and music processing"
+
+toolchain = {'name': 'foss', 'version': '2017a'}
+
+source_urls = [PYPI_SOURCE]
+sources = [SOURCE_TAR_GZ]
+
+freetype_ver = '2.7.1'
+
+dependencies = [
+    ('Python', '3.6.4'),
+#    ('matplotlib', '1.5.1', versionsuffix + '-freetype-%s' % freetype_ver),
+]
+
+exts_defaultclass = 'PythonPackage'
+
+exts_list = [
+    ('resampy', '0.2.0', {
+        'source_urls': ['https://pypi.python.org/packages/source/r/resampy/'],
+        'modulename': 'audioread',
+    }),
+]
+
+use_pip = True
+
+sanity_check_paths = {
+    'files': [],
+    'dirs': ['lib/python%(pyshortver)s/site-packages'],
+}
+
+moduleclass = 'data'

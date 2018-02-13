@@ -1,3 +1,9 @@
+###############################################################################################################
+#
+# Author: Cristina Ocaña Amorós
+#
+###############################################################################################################
+
 easyblock = 'PythonPackage'
 
 name = 'PyTorch'
@@ -13,25 +19,26 @@ pymaj = '3'
 pymin = '6'
 pymajmin = pymaj + pymin
 
-source_urls = [PYPI_SOURCE]
-sources = [SOURCELOWER_TAR_GZ]
+source_urls = ['http://download.pytorch.org/whl/cu80/']
+sources = ['torch-%%(version)s.post4-cp%(pymajmin)s-cp%(pymajmin)sm-linux_x86_64.whl' % {'pymajmin': pymajmin},
+]
+
 checksums = []
 dependencies = [
     ('Python', '3.6.4'),
     ('PyYAML', '3.12', versionsuffix),
     ('CUDA', '8.0.61', '', True),
-    ('CuDNN', '6.0', '-CUDA-8.0.61', True),
+    ('cuDNN', '6.0', '-CUDA-8.0.61', True),
 ]
 
-#exts_defaultclass = 'PythonPackage'
-
 use_pip = True
-options = {'modulename': 'torchvision'}
+unpack_sources = False
+
+options = {'modulename': 'torch'}
 
 sanity_check_paths = {
     'files': [],
     'dirs': ['lib/python%(pyshortver)s/site-packages'],
 }
-
 
 moduleclass = 'lib'

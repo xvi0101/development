@@ -1,0 +1,36 @@
+easyblock = 'PythonPackage'
+
+name = 'numpy'
+version = '1.14.0'
+versionsuffix = '-Python-%(pyver)s'
+
+homepage = 'https://itk.org'
+description = "open-source software system to support the Visible Human Project. Currently under active development, ITK employs leading-edge segmentation and registration algorithms in two, three, and more dimensions."
+
+toolchain = {'name': 'foss', 'version': '2017a'}
+
+pymaj = '3'
+pymin = '6'
+pymajmin = pymaj + pymin
+
+source_urls = ['https://pypi.python.org/packages/dc/ac/5c270dffb864f23315e9c1f9e0a0b300c797b3c170666c031c4de42aacae/']
+#numpy-1.14.0-cp36-cp36m-manylinux1_x86_64.whl
+sources = [
+    'numpy-%%(version)s-cp%(pymajmin)s-cp%(pymajmin)sm-manylinux1_x86_64.whl' % {'pymajmin': pymajmin},
+]
+checksums = ['34f763b99cc39ca3224c158ec82e2b39']
+
+dependencies = [
+    ('Python', '%s.%s.4' % (pymaj, pymin)),
+]
+
+use_pip = True
+unpack_sources = False
+sanity_check_paths = {
+    'files': [],
+    'dirs': ['lib/python%(pyshortver)s/site-packages'],
+}
+
+sanity_check_commands = [('python', '-c "import numpy"')]
+
+moduleclass = 'lib'

@@ -1,0 +1,32 @@
+easyblock = 'PythonPackage'
+
+name = 'sklearn'
+version = "0.0"
+versionsuffix = "-Python-3.6.4"
+
+homepage = 'https://pypi.python.org/pypi/sklearn/'
+description = "Generic dictionaryish object storage frontend"
+
+toolchain = {'name': 'foss', 'version': '2017a'}
+
+pymaj = '3'
+pymin = '6'
+pymajmin = pymaj + pymin
+
+source_urls = [PYPI_SOURCE]
+sources = [SOURCELOWER_TAR_GZ]
+checksums = []
+dependencies = [
+    ('Python', '%s.%s.4' % (pymaj, pymin)),
+]
+
+exts_defaultclass = 'PythonPackage'
+
+use_pip = True
+
+sanity_check_paths = {
+    'files': [],
+    'dirs': ['lib/python%(pyshortver)s/site-packages'],
+}
+
+moduleclass = 'lib'

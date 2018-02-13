@@ -20,8 +20,9 @@ sources = [
 checksums = ['e82e309e6af0996f2083f59cf21d392c']
 
 dependencies = [
-    ('Python', '%s.%s.12' % (pymaj, pymin)),
-    ('protobuf-python', '3.3.0', versionsuffix),
+        ('cuDNN', '6.0', '-CUDA-8.0.61', True),
+    	('Python', '%s.%s.12' % (pymaj, pymin)),
+    	('protobuf-python', '3.3.0', versionsuffix),
 ]
 
 use_pip = True
